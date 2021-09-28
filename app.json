@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "moviespostcine",
+    "slug": "moviespostcine",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "moviespostcine"
+}
