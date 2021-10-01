@@ -1,5 +1,6 @@
 import React from "react";
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import {MaterialCommunityIcons} from '@expo/vector-icons';
 
 const {Navigator, Screen} = createDrawerNavigator();
 
@@ -29,6 +30,12 @@ export const AppDrawerRoutes = () => {
             <Screen 
                 name="HomeDrawer"
                 component={AppStackRoutes}
+                options={{
+                    title:'Home',
+                    drawerIcon: ({focused,size,color})=>(
+                        <MaterialCommunityIcons name={focused ? 'movie-open' : 'movie-outline'} size={size} color={color} />
+                    )
+                }}
             />
             <Screen 
                 name="Movies"
