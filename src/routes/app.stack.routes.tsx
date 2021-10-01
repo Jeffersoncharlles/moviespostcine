@@ -13,10 +13,14 @@ export const AppStackRoutes = () => {
     return (
         <Navigator 
             initialRouteName="Home"
+
         >
             <Screen 
                 name="Home"
                 component={Home}
+                options={{
+                    headerShown:false
+                }}
             />
 
         </Navigator>

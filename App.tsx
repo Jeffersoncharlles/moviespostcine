@@ -8,7 +8,7 @@ import theme from './src/styles/theme';
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <StatusBar hidden={false} />
+      <StatusBar hidden={false} backgroundColor="transparent" translucent/>
       <Routes />
     </ThemeProvider>
   );

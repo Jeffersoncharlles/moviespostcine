@@ -40,6 +40,12 @@ export const AppDrawerRoutes = () => {
             <Screen 
                 name="Movies"
                 component={Movies}
+                options={{
+                    title:'Meus Filmes',
+                    drawerIcon: ({focused,size,color})=>(
+                        <MaterialCommunityIcons name={focused ? 'archive' : 'archive-outline'} size={size} color={color} />
+                    )
+                }}
             />
 
         </Navigator>

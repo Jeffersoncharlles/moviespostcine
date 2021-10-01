@@ -9,6 +9,7 @@
 - Styled-components
 - React Navigation
 - Responsive FontSize
+- React-Native-iphone-x-helper
 
 ## License
 
