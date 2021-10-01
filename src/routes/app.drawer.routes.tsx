@@ -3,7 +3,9 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 const {Navigator, Screen} = createDrawerNavigator();
 
-import { Home } from "../pages/Home";
+import { Movies } from "../pages/Movies";
+
+import { AppStackRoutes } from './app.stack.routes';
 
 export const AppDrawerRoutes = () => {
     return (
@@ -11,8 +13,12 @@ export const AppDrawerRoutes = () => {
             
         >
             <Screen 
-                name="Home"
-                component={Home}
+                name="HomeDrawer"
+                component={AppStackRoutes}
+            />
+            <Screen 
+                name="Movies"
+                component={Movies}
             />
 
         </Navigator>
