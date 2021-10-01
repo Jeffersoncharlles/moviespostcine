@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 
 
@@ -10,16 +11,21 @@ import {
 
 } from './styles';
 
-export const Header = () => {
-    const name = 'Movies Poster Cine'
+interface Props {
+    title: string;
+    iconName: string;
+}
+
+export const Header = ({title,iconName}:Props) => {
+    const navigation = useNavigation();
 
     return(
         <Container>
-            <MenuButton>
-                <IconMenu name="menu" />
+            <MenuButton  onPress={()=>navigation.openDrawer()}>
+                <IconMenu name={iconName} />
             </MenuButton>
 
-            <Title>{name}</Title>
+            <Title>{title}</Title>
         </Container>
     );
 }
