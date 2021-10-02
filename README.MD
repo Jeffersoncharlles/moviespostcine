@@ -12,6 +12,7 @@
 - React-Native-iphone-x-helper
 - Axios
 - Expo-Vector-Icons
+- React-Native-Stars
 
 ## License
 

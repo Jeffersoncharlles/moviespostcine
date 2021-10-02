@@ -3,7 +3,7 @@ export default {
         primary:'#d9e0e7',
         drawer:'#2d353c',
         secondary:'#ff872c',
-        secondary_light: 'rgba(255,135,44,0.3)',
+        header_transparante: 'rgba(25,26,48,0.8)',
         success:'#12A454',
         success_light:'rgba(18,164,84,0.5)',
         danger:'#E72f49',

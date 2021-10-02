@@ -31,13 +31,11 @@ interface IMovies{
     overview:string;
 }
 interface IMoviesInterface{
-    results:[
-        MovieDTO
-    ][];
+    movie:MovieDTO[];
 }
 
 export const Home = () => {
-    const [nowMovies, setNowMovies] = useState<IMovies[]>([]);
+    const [nowMovies, setNowMovies] = useState<IMoviesInterface[]>([]);
     const [popularMovies, setPopularMovies] = useState<IMovies[]>([]);
     const [topMovies, setTopMovies] = useState<IMovies[]>([]);
     const [loading,setLoading] = useState(true);
@@ -49,7 +47,7 @@ export const Home = () => {
 
     const theme = useTheme();
 
-
+    
     
 
 
@@ -140,6 +138,7 @@ export const Home = () => {
                 <BannerButton activeOpacity={0.8} onPress={()=> navigateDetailsPage(bannerMovie)}>
                     <Banner 
                         resizeMethod='resize'
+                        // resizeMode="cover"
                         source={{uri:posterPath+bannerMovie.poster_path}} 
                         
                         />

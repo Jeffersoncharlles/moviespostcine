@@ -24,10 +24,13 @@ export const Header =styled.View`
 
 export const HeaderButton =styled(RectButton)`
     /* margin-top: ${RFValue(24)}px; */
+    width: ${RFValue(46)}px;
+    height: ${RFValue(46)}px;
     align-items: center;
     justify-content: center;
+    background-color: ${({theme})=> theme.colors.header_transparante};
     margin-bottom: 8px;
-    border-radius: 5px;
+    border-radius: 23px;
 `;
 export const BackHeader =styled(Feather)`
     font-size: ${RFValue(28)}px;
@@ -36,4 +39,45 @@ export const BackHeader =styled(Feather)`
 export const FavoritesHeader =styled(Ionicons)`
     font-size: ${RFValue(28)}px;
     color: ${ ({theme}) => theme.colors.shape};
+`;
+export const Banner = styled.Image`
+    width: 100%;
+    height: ${RFValue(350)}px;
+    /* border-bottom-left-radius: ${RFValue(70)}px; */
+    border-bottom-right-radius: ${RFValue(70)}px;
+`;
+
+export const ButtonLink = styled(RectButton)`
+    background-color:${ ({theme}) => theme.colors.danger};
+    width: ${RFValue(46)}px;
+    height: ${RFValue(46)}px;
+    justify-content: center;
+    align-items: center;
+    border-radius: ${RFValue(23)}px;
+    position: absolute;
+    top: ${RFValue(315)}px;
+    right:  ${RFValue(10)}px;
+    z-index:99;
+`;
+/**
+ *   position: absolute;
+ *  para zerar a imagem e ficar sobre a imagem
+ *  top: ${RFValue(300)}px; //vai desse ele 300 px
+ *  right:  ${RFValue(10)}px; vai tirar da direta 10 px
+ *  
+ *  
+ *  
+ *  
+ *  
+ **/
+export const IconLink = styled(Feather)`
+    font-size: ${RFValue(24)}px;
+    color: ${ ({theme}) => theme.colors.shape};
+`;
+export const TitleMovie = styled.Text`
+    font-size: ${RFValue(20)}px;
+    color: ${ ({theme}) => theme.colors.shape};
+    font-weight: bold;
+    padding: 8px 14px;
+    margin-top: 8px;
 `;

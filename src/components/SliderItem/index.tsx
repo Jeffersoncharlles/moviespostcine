@@ -18,7 +18,8 @@ export const SliderItem = ({data , navigatePage}:any) => {
 
     return(
         <Container activeOpacity={0.8}  onPress={()=>navigatePage(data)}>
-            <BannerItemImg 
+            <BannerItemImg
+                // resizeMode="contain" 
                 source={{uri:`${posterPath+data.poster_path}`}}
 
             />

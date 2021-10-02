@@ -26,6 +26,7 @@
     "react-native-responsive-fontsize": "^0.5.1",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.4.0",
+    "react-native-stars": "^1.2.2",
     "react-native-unimodules": "0.14.10",
     "react-native-web": "~0.13.12",
     "styled-components": "^5.3.1"
