@@ -10,6 +10,8 @@
 - React Navigation
 - Responsive FontSize
 - React-Native-iphone-x-helper
+- Axios
+- Expo-Vector-Icons
 
 ## License
 

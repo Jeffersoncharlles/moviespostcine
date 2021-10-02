@@ -15,7 +15,7 @@ interface ICartaz {
     banner:string;
 }
 
-export const SliderItem = ({title,rate,banner}:ICartaz) => {
+export const SliderItem = () => {
     
 
     return(
@@ -25,10 +25,10 @@ export const SliderItem = ({title,rate,banner}:ICartaz) => {
                 resizeMethod='resize'
 
             />
-            <Title numberOfLines={1}>{title}</Title>
+            <Title numberOfLines={1}>name</Title>
             <RateContainer>
                 <StarIcon name='md-star'/>
-                <Rate>{rate}</Rate>
+                <Rate>9/10</Rate>
             </RateContainer>
 
         </Container>

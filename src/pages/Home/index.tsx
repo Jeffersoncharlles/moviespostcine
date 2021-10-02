@@ -16,10 +16,65 @@ import {
 
 import { Header } from '../../components/Header';
 import { SliderItem } from '../../components/SliderItem';
+import { api, key } from '../../services/api';
+import { getListMovies } from '../../utils/movie';
+
+interface IMovies{
+    title:string;
+    poster_path:string;
+    release_date:string;
+    vote_average:number;
+    vote_count:number;
+    overview:string;
+}
 
 export const Home = () => {
+    const [nowMovies, setNowMovies] = useState([]);
+    const [popularMovies, setPopularMovies] = useState([]);
+    const [topMovies, setTopMovies] = useState([]);
     const name = 'Movies Poster Cine'
     const iconNames = 'menu'
+
+    const getMovies = async ()=>{
+        const [nowData,popularData,topData] = await Promise.all([
+            api.get('/movie/now_playing',{
+                params:{
+                    api_key:key,
+                    language:'pt-BR',
+                    page:1
+                }
+            }),
+            api.get('/movie/popular',{
+                params:{
+                    api_key:key,
+                    language:'pt-BR',
+                    page:1
+                }
+            }),
+            api.get('/movie/top_rated',{
+                params:{
+                    api_key:key,
+                    language:'pt-BR',
+                    page:1
+                }
+             }),
+
+        ]);
+        console.log(nowData.data.results);
+        const nowList = await getListMovies(10,nowData.data.results);
+        const popularList =  getListMovies(10,popularData.data.results);
+        const topList =  getListMovies(10,topData.data.results);
+
+        setNowMovies(nowList);
+        setPopularMovies(popularList);
+        setTopMovies(topList);   
+    }
+    getMovies();
+
+
+    useEffect( ()=>{
+       
+    },[]);
 
     return(
         <Container>
@@ -45,12 +100,12 @@ export const Home = () => {
                 <SliderMovie 
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
-                    data={[1,2,3,4,5]}
+                    data={nowMovies}
+                    
                     renderItem={({item})=> (
                             <SliderItem 
-                                title="vingadores" 
-                                rate={'9/10'} 
-                                banner="link" 
+                                data={item}
+                                
                             />
                         )
                     }
