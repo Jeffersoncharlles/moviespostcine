@@ -57,7 +57,37 @@ export const Home = () => {
                 
                 />
 
-            </ScrollView>
+                <Title>Populares</Title>
+                <SliderMovie 
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    data={[1,2,3,4,5]}
+                    renderItem={({item})=> (
+                            <SliderItem 
+                                title="vingadores" 
+                                rate={'9/10'} 
+                                banner="link" 
+                            />
+                        )
+                    }
+                
+                />
+                <Title>Mais Votados</Title>
+                <SliderMovie 
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    data={[1,2,3,4,5]}
+                    renderItem={({item})=> (
+                            <SliderItem 
+                                title="vingadores" 
+                                rate={'9/10'} 
+                                banner="link" 
+                            />
+                        )
+                    }
+                />
+
+            </ScrollView> 
 
         </Container>
     );

@@ -1,7 +1,7 @@
 export default {
     colors:{
-        primary:'#5363d3',
-        drawer:'#121212',
+        primary:'#d9e0e7',
+        drawer:'#2d353c',
         secondary:'#ff872c',
         secondary_light: 'rgba(255,135,44,0.3)',
         success:'#12A454',
@@ -12,7 +12,7 @@ export default {
         title:'#363f5f',
         text:'#969cb2',
         input_color: 'rgba(255,255,255,0.4)',
-        background:'#141a29',
+        background:'#2d353c',
         star_icon:'#E7A74e'
     }
 }
