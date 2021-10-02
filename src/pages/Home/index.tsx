@@ -19,6 +19,8 @@ import { SliderItem } from '../../components/SliderItem';
 import { api, key, posterPath } from '../../services/api';
 import { getListMovies,randomBanner } from '../../utils/movie';
 import { useTheme } from 'styled-components';
+import { useNavigation } from '@react-navigation/core';
+import MovieDTO from '../../services/dtoMovies';
 
 interface IMovies{
     title:string;
@@ -30,12 +32,7 @@ interface IMovies{
 }
 interface IMoviesInterface{
     results:[
-        title:string,
-        poster_path:string,
-        release_date:string,
-        vote_average:number,
-        vote_count:number,
-        overview:string,
+        MovieDTO
     ][];
 }
 
@@ -45,6 +42,7 @@ export const Home = () => {
     const [topMovies, setTopMovies] = useState<IMovies[]>([]);
     const [loading,setLoading] = useState(true);
     const [bannerMovie,setBannerMovie] = useState({});
+    const navigation = useNavigation();
 
     const name = 'Movies Poster Cine'
     const iconNames = 'menu'
@@ -77,7 +75,7 @@ export const Home = () => {
                         page:1
                     }
                 }),
-                api.get('/movie/top_rated',{
+                api.get('/movie/upcoming',{
                     params:{
                         api_key:key,
                         language:'pt-BR',
@@ -112,6 +110,10 @@ export const Home = () => {
         
     },[]);
 
+    const navigateDetailsPage =(movie)=>{
+        navigation.navigate('Details',{id:movie.id});
+    }
+
     if (loading) {
         return(
             <Container>
@@ -135,7 +137,7 @@ export const Home = () => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <Title>Em cartaz</Title>
 
-                <BannerButton activeOpacity={0.8} onPress={()=>alert('teste')}>
+                <BannerButton activeOpacity={0.8} onPress={()=> navigateDetailsPage(bannerMovie)}>
                     <Banner 
                         resizeMethod='resize'
                         source={{uri:posterPath+bannerMovie.poster_path}} 
@@ -151,7 +153,7 @@ export const Home = () => {
                     renderItem={({item})=> (
                             <SliderItem 
                                 data={item}
-                                
+                                navigatePage={()=> navigateDetailsPage(item)}
                             />
                         )
                     }
@@ -167,12 +169,13 @@ export const Home = () => {
                     renderItem={({item})=> (
                             <SliderItem 
                                 data={item}
+                                navigatePage={()=> navigateDetailsPage(item)}
                             />
                         )
                     }
                 
                 />
-                <Title>Mais Votados</Title>
+                <Title>Proximos Lançamentos</Title>
                 <SliderMovie 
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
@@ -181,6 +184,7 @@ export const Home = () => {
                     renderItem={({item})=> (
                             <SliderItem 
                                 data={item}
+                                navigatePage={()=> navigateDetailsPage(item)}
                             />
                         )
                     }
