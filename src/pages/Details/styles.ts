@@ -11,16 +11,22 @@ export const Container = styled.View`
 `;
 
 export const Header =styled.View`
-    margin-top: ${getStatusBarHeight()+20}px;   
+    /*//vai ficar uma camada acima sobre os itens*/
+    z-index: 99;
+    position: absolute;
+    top: ${getStatusBarHeight()+30}px;
+    width:100% ;
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding: 0 14px;
 `;
+
 export const HeaderButton =styled(RectButton)`
     /* margin-top: ${RFValue(24)}px; */
     align-items: center;
     justify-content: center;
     margin-bottom: 8px;
-    padding:14px;
     border-radius: 5px;
 `;
 export const BackHeader =styled(Feather)`
