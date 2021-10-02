@@ -29,7 +29,7 @@ export const SearchInput = styled.TextInput`
     font-size: ${RFValue(18)}px;
     color: ${({theme})=> theme.colors.shape};
 `;
-export const SearchButton = styled.View`
+export const SearchButton = styled.TouchableOpacity`
     width: 15%;
     height: ${RFValue(35)}px;
     align-items: center;
@@ -38,4 +38,22 @@ export const SearchButton = styled.View`
 export const SearchIcon = styled(Feather)`
     font-size: ${RFValue(24)}px;
     color: ${ ({theme}) => theme.colors.shape};
+`;
+export const Title = styled.Text`
+    padding-top: ${RFValue(20)}px;
+    padding-bottom: ${RFValue(8)}px;
+    font-size: ${RFValue(24)}px;
+    color: ${ ({theme}) => theme.colors.shape};
+    padding-right: ${RFValue(14)}px;
+    padding-left: ${RFValue(14)}px;
+`;
+export const BannerButton = styled.TouchableOpacity``;
+export const Banner = styled.Image`
+    height: ${RFValue(150)}px;
+    border-radius: 20px;
+    margin: 0 14px;
+`;
+export const SliderMovie = styled.FlatList`
+    height: ${RFValue(250)}px;
+    padding:0 14px;
 `;
