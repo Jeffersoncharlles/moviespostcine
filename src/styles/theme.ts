@@ -12,6 +12,7 @@ export default {
         title:'#363f5f',
         text:'#969cb2',
         input_color: 'rgba(255,255,255,0.4)',
-        background:'#141a29'
+        background:'#141a29',
+        star_icon:'#E7A74e'
     }
 }
