@@ -1,4 +1,5 @@
 import React from 'react';
+import { posterPath } from '../../services/api';
 
 import {
     Container,
@@ -9,26 +10,20 @@ import {
     Rate,
 } from './styles';
 
-interface ICartaz {
-    title: string;
-    rate:string;
-    banner:string;
-}
-
-export const SliderItem = () => {
+export const SliderItem = ({data}:any) => {
+    
     
 
     return(
-        <Container activeOpacity={0.8}>
+        <Container activeOpacity={0.8}  >
             <BannerItemImg 
-                source={{uri:'https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1925&q=80'}}
-                resizeMethod='resize'
+                source={{uri:`${posterPath+data.poster_path}`}}
 
             />
-            <Title numberOfLines={1}>name</Title>
+            <Title numberOfLines={1}>{data.title}</Title>
             <RateContainer>
                 <StarIcon name='md-star'/>
-                <Rate>9/10</Rate>
+                <Rate>{data.vote_average}/10</Rate>
             </RateContainer>
 
         </Container>

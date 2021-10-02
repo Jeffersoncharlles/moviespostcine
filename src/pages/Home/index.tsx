@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react';
 
-import { ScrollView } from 'react-native';
+import { ScrollView ,ActivityIndicator} from 'react-native';
 
 import {
     Container,
@@ -16,8 +16,9 @@ import {
 
 import { Header } from '../../components/Header';
 import { SliderItem } from '../../components/SliderItem';
-import { api, key } from '../../services/api';
-import { getListMovies } from '../../utils/movie';
+import { api, key, posterPath } from '../../services/api';
+import { getListMovies,randomBanner } from '../../utils/movie';
+import { useTheme } from 'styled-components';
 
 interface IMovies{
     title:string;
@@ -27,54 +28,97 @@ interface IMovies{
     vote_count:number;
     overview:string;
 }
+interface IMoviesInterface{
+    results:[
+        title:string,
+        poster_path:string,
+        release_date:string,
+        vote_average:number,
+        vote_count:number,
+        overview:string,
+    ][];
+}
 
 export const Home = () => {
-    const [nowMovies, setNowMovies] = useState([]);
-    const [popularMovies, setPopularMovies] = useState([]);
-    const [topMovies, setTopMovies] = useState([]);
+    const [nowMovies, setNowMovies] = useState<IMovies[]>([]);
+    const [popularMovies, setPopularMovies] = useState<IMovies[]>([]);
+    const [topMovies, setTopMovies] = useState<IMovies[]>([]);
+    const [loading,setLoading] = useState(true);
+    const [bannerMovie,setBannerMovie] = useState({});
+
     const name = 'Movies Poster Cine'
     const iconNames = 'menu'
 
-    const getMovies = async ()=>{
-        const [nowData,popularData,topData] = await Promise.all([
-            api.get('/movie/now_playing',{
-                params:{
-                    api_key:key,
-                    language:'pt-BR',
-                    page:1
-                }
-            }),
-            api.get('/movie/popular',{
-                params:{
-                    api_key:key,
-                    language:'pt-BR',
-                    page:1
-                }
-            }),
-            api.get('/movie/top_rated',{
-                params:{
-                    api_key:key,
-                    language:'pt-BR',
-                    page:1
-                }
-             }),
+    const theme = useTheme();
 
-        ]);
-        console.log(nowData.data.results);
-        const nowList = await getListMovies(10,nowData.data.results);
-        const popularList =  getListMovies(10,popularData.data.results);
-        const topList =  getListMovies(10,topData.data.results);
 
-        setNowMovies(nowList);
-        setPopularMovies(popularList);
-        setTopMovies(topList);   
-    }
-    getMovies();
+    
 
 
     useEffect( ()=>{
-       
+
+        let isActive = true;
+        const ac = new AbortController();
+
+        
+        const getMovies = async ()=>{
+            const [nowData,popularData,topData] = await Promise.all([
+                api.get('/movie/now_playing',{
+                    params:{
+                        api_key:key,
+                        language:'pt-BR',
+                        page:1
+                    }
+                }),
+                api.get('/movie/popular',{
+                    params:{
+                        api_key:key,
+                        language:'pt-BR',
+                        page:1
+                    }
+                }),
+                api.get('/movie/top_rated',{
+                    params:{
+                        api_key:key,
+                        language:'pt-BR',
+                        page:1
+                    }
+                 }),
+    
+            ]);
+            if (isActive) {
+                const nowList = getListMovies(10,nowData.data.results);
+                const popularList =  getListMovies(10,popularData.data.results);
+                const topList =  getListMovies(10,topData.data.results);
+        
+                setNowMovies(nowList);
+                setPopularMovies(popularList);
+                setTopMovies(topList);  
+                setBannerMovie(nowData.data.results[randomBanner(nowData.data.results)]);
+                //ele vai pegar um objeto aleatorio do resultado
+                
+                setLoading(false); 
+            }
+
+            
+        }
+        getMovies();
+
+        //caso troca de tela nao vai fazer a requisicao
+        return ()=>{
+            isActive = false;
+            ac.abort();
+        }
+        
     },[]);
+
+    if (loading) {
+        return(
+            <Container>
+                <ActivityIndicator  size='large' color={theme.colors.success}/>
+            </Container>
+        )
+    }
 
     return(
         <Container>
@@ -94,14 +138,16 @@ export const Home = () => {
                 <BannerButton activeOpacity={0.8} onPress={()=>alert('teste')}>
                     <Banner 
                         resizeMethod='resize'
-                        source={{uri:'https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1925&q=80'}} />
+                        source={{uri:posterPath+bannerMovie.poster_path}} 
+                        
+                        />
                 </BannerButton>
                 
                 <SliderMovie 
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                     data={nowMovies}
-                    
+                    keyExtractor={(item)=>String(item.id)}
                     renderItem={({item})=> (
                             <SliderItem 
                                 data={item}
@@ -116,12 +162,11 @@ export const Home = () => {
                 <SliderMovie 
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
-                    data={[1,2,3,4,5]}
+                    data={popularMovies}
+                    keyExtractor={(item)=>String(item.id)}
                     renderItem={({item})=> (
                             <SliderItem 
-                                title="vingadores" 
-                                rate={'9/10'} 
-                                banner="link" 
+                                data={item}
                             />
                         )
                     }
@@ -131,12 +176,11 @@ export const Home = () => {
                 <SliderMovie 
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
-                    data={[1,2,3,4,5]}
+                    keyExtractor={(item)=>String(item.id)}
+                    data={topMovies}
                     renderItem={({item})=> (
                             <SliderItem 
-                                title="vingadores" 
-                                rate={'9/10'} 
-                                banner="link" 
+                                data={item}
                             />
                         )
                     }

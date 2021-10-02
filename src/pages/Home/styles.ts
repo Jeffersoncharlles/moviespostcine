@@ -40,7 +40,7 @@ export const SearchIcon = styled(Feather)`
     color: ${ ({theme}) => theme.colors.shape};
 `;
 export const Title = styled.Text`
-    padding-top: ${RFValue(20)}px;
+    padding-top: ${RFValue(14)}px;
     padding-bottom: ${RFValue(8)}px;
     font-size: ${RFValue(24)}px;
     color: ${ ({theme}) => theme.colors.shape};
