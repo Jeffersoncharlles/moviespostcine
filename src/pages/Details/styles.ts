@@ -132,8 +132,8 @@ export const Description = styled.Text`
 export const ListCast = styled.FlatList`
     padding-left: 14px;
     margin: 8px 0;
-    max-height: ${RFValue(35)}px;
-    min-height: ${RFValue(35)}px;
+    max-height: ${RFValue(80)}px;
+    min-height: ${RFValue(80)}px;
 
 `;
 export const ModalView = styled.Modal`

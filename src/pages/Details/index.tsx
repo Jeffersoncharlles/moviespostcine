@@ -153,7 +153,8 @@ export const Details = () => {
                     <TitleMovie>Descrição</TitleMovie>
                     <Description>{movie.overview}</Description>
 
-                    {/* <ListCast  
+                    {/* <TitleMovie>Cast</TitleMovie>
+                    <ListCast  
                         data={cast}
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}

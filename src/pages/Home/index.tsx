@@ -40,6 +40,7 @@ export const Home = () => {
     const [topMovies, setTopMovies] = useState<IMovies[]>([]);
     const [loading,setLoading] = useState(true);
     const [bannerMovie,setBannerMovie] = useState({});
+    const [searchInput,setSearchInput] = useState('');
     const navigation = useNavigation();
 
     const name = 'Movies Poster Cine'
@@ -47,7 +48,9 @@ export const Home = () => {
 
     const theme = useTheme();
 
-    
+    const handleSearchMovie = ()=>{
+        navigation.navigate('Search')
+    }
     
 
 
@@ -125,9 +128,11 @@ export const Home = () => {
             <Header title={name} iconName={iconNames} />
             <SearchContainer>
                 <SearchInput 
+                    value={searchInput}
+                    onChangeText={(t)=>setSearchInput(t)}
                     placeholder="Pesquise aqui..."
                 />
-                <SearchButton>
+                <SearchButton onPress={handleSearchMovie}>
                     <SearchIcon name="search"/>
                 </SearchButton>
             </SearchContainer> 

@@ -10,6 +10,10 @@ import {
     Rate,
 } from './styles';
 
+interface SlideProps {
+    
+}
+
 export const SliderItem = ({data , navigatePage}:any) => {
     
     // const handleDetailsNavigation =(navigatePage)=>{
