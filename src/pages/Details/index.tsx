@@ -1,9 +1,13 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React ,{useEffect, useState}from 'react';
-import { api, key, posterPath } from '../../services/api';
 import Stars from 'react-native-stars';
+import { api, key, posterPath } from '../../services/api';
+
+
 import { Genres } from '../../components/Genres';
-import { getListMovies,randomBanner } from '../../utils/movie';
+import { getListMovies } from '../../utils/movie';
+import { Cast } from '../../components/Cast';
+import { ModalLink } from '../../components/ModalLink';
 
 import {
     Container,
@@ -24,9 +28,10 @@ import {
     ListGeneral,
     OverviewScroll,
     Description,
-    ListCast
+    ListCast,
+    ModalView
 } from './styles';
-import { Cast } from '../../components/Cast';
+
 
 
 interface IMovie{
@@ -39,6 +44,7 @@ interface IMovie{
     overview:string;
     release_date:string;
     vote_average:number;
+    homepage:string;
 }
 
 
@@ -47,6 +53,7 @@ export const Details = () => {
     const route = useRoute();
     const [movie, setMovie] = useState<IMovie>({} as IMovie);
     const [cast, setCast] = useState({});
+    const [openLink, setOpenLink] = useState(false);
 
     useEffect(()=>{
         let isActive  = true;
@@ -114,7 +121,7 @@ export const Details = () => {
                 source={{uri:posterPath+movie.poster_path}} 
             />
 
-            <ButtonLink>
+            <ButtonLink onPress={()=>setOpenLink(true)}>
                 <IconLink name='link'/>
             </ButtonLink>
 
@@ -157,7 +164,14 @@ export const Details = () => {
                     /> */}
             </OverviewScroll>
 
-           
+            <ModalView animationType="slide" transparent={true} visible={openLink}>
+                    <ModalLink 
+                        link={movie?.homepage}
+                        title={movie?.title}
+                        closeModal={()=>setOpenLink(false)}
+                    
+                    />
+            </ModalView>
 
         </Container>
     );

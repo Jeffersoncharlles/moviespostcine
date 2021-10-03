@@ -136,3 +136,5 @@ export const ListCast = styled.FlatList`
     min-height: ${RFValue(35)}px;
 
 `;
+export const ModalView = styled.Modal`
+`;
