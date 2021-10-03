@@ -3,6 +3,7 @@ import {Feather,Ionicons} from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { RectButton,} from 'react-native-gesture-handler';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 export const Container = styled.View`
@@ -40,11 +41,17 @@ export const FavoritesHeader =styled(Ionicons)`
     font-size: ${RFValue(28)}px;
     color: ${ ({theme}) => theme.colors.shape};
 `;
+
 export const Banner = styled.Image`
     width: 100%;
     height: ${RFValue(350)}px;
     /* border-bottom-left-radius: ${RFValue(70)}px; */
     border-bottom-right-radius: ${RFValue(70)}px;
+`;
+export const BannerLinear = styled(LinearGradient)`
+    width: 100%;
+    height: ${RFValue(350)}px;
+    
 `;
 
 export const ButtonLink = styled(RectButton)`
@@ -80,4 +87,45 @@ export const TitleMovie = styled.Text`
     font-weight: bold;
     padding: 8px 14px;
     margin-top: 8px;
+`;
+export const Rate = styled.Text`
+    font-size: ${RFValue(17)}px;
+    color: ${ ({theme}) => theme.colors.shape};
+`;
+export const ContainerArea = styled.View`
+    flex-direction: row;
+    align-items: center;
+    padding:  0 14px;
+    justify-content: space-between;
+`;
+export const IconStar =styled(Ionicons)`
+    font-size: ${RFValue(24)}px;
+    color: ${ ({theme}) => theme.colors.star_icon};
+`;
+export const IconStarEmpty =styled(Ionicons)`
+    font-size: ${RFValue(24)}px;
+    color: ${ ({theme}) => theme.colors.star_icon};
+`;
+export const IconHalfStar =styled(Ionicons)`
+    font-size: ${RFValue(24)}px;
+    color: ${ ({theme}) => theme.colors.star_icon};
+`;
+export const ListGeneral = styled.FlatList`
+    padding-left: 14px;
+    margin: 8px 0;
+    max-height: ${RFValue(35)}px;
+    min-height: ${RFValue(35)}px;
+
+`;
+export const OverviewScroll = styled.ScrollView`
+    
+
+`;
+export const Description = styled.Text`
+    font-size: ${RFValue(14)}px;
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-bottom: 30px;
+    color: ${ ({theme}) => theme.colors.shape};
+    line-height: ${RFValue(20)}px;
 `;

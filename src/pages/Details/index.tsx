@@ -1,6 +1,8 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React ,{useEffect, useState}from 'react';
 import { api, key, posterPath } from '../../services/api';
+import Stars from 'react-native-stars';
+import { Genres } from '../../components/Genres';
 
 import {
     Container,
@@ -9,14 +11,31 @@ import {
     BackHeader,
     FavoritesHeader,
     Banner,
+    BannerLinear,
     ButtonLink,
     IconLink,
     TitleMovie,
+    ContainerArea,
+    IconStar,
+    IconStarEmpty,
+    IconHalfStar,
+    Rate,
+    ListGeneral,
+    OverviewScroll,
+    Description
 } from './styles';
+
 
 interface IMovie{
     poster_path:string;
     title:string;
+    genres:{
+        id:number;
+        name:string;
+    }[];
+    overview:string;
+    release_date:string;
+    vote_average:number;
 }
 
 
@@ -66,6 +85,7 @@ export const Details = () => {
                     />
                 </HeaderButton>
             </Header>
+            
             <Banner 
                 resizeMode="cover"
                 source={{uri:posterPath+movie.poster_path}} 
@@ -77,7 +97,32 @@ export const Details = () => {
 
             <TitleMovie numberOfLines={2}>{movie.title}</TitleMovie>
         
-
+            <ContainerArea>
+                <Stars 
+                    default={movie.vote_average}
+                    count={10}
+                    half={true}
+                    starSize={20}
+                    fullStar={<IconStar name="md-star" />}
+                    emptyStar={<IconStarEmpty name="md-star-outline" />}
+                    halfStar={<IconHalfStar name="md-star-half" />}
+                    disable={true}
+                />
+                <Rate>{movie.vote_average}/10</Rate>
+            </ContainerArea>
+            <ListGeneral 
+                data={movie?.genres}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                keyExtractor={(item)=>String(item.id)}
+                renderItem={({item})=>(
+                    <Genres data={item}/>
+                )}
+            />
+            <OverviewScroll showsVerticalScrollIndicator={false}>
+                    <TitleMovie>Descrição</TitleMovie>
+                    <Description>{movie.overview}</Description>
+            </OverviewScroll>
 
         </Container>
     );
