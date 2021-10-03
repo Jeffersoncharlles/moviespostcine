@@ -129,3 +129,10 @@ export const Description = styled.Text`
     color: ${ ({theme}) => theme.colors.shape};
     line-height: ${RFValue(20)}px;
 `;
+export const ListCast = styled.FlatList`
+    padding-left: 14px;
+    margin: 8px 0;
+    max-height: ${RFValue(35)}px;
+    min-height: ${RFValue(35)}px;
+
+`;

@@ -3,6 +3,7 @@ import React ,{useEffect, useState}from 'react';
 import { api, key, posterPath } from '../../services/api';
 import Stars from 'react-native-stars';
 import { Genres } from '../../components/Genres';
+import { getListMovies,randomBanner } from '../../utils/movie';
 
 import {
     Container,
@@ -22,8 +23,10 @@ import {
     Rate,
     ListGeneral,
     OverviewScroll,
-    Description
+    Description,
+    ListCast
 } from './styles';
+import { Cast } from '../../components/Cast';
 
 
 interface IMovie{
@@ -43,6 +46,7 @@ export const Details = () => {
     const navigation = useNavigation();
     const route = useRoute();
     const [movie, setMovie] = useState<IMovie>({} as IMovie);
+    const [cast, setCast] = useState({});
 
     useEffect(()=>{
         let isActive  = true;
@@ -60,9 +64,28 @@ export const Details = () => {
                 setMovie(response.data);
                 //console.log(response.data);
             }
+           
+        }
+        const  getCast = async ()=>{
+            const response = await api.get(`/movie/${route.params?.id}/credits`,{
+                params:{
+                    api_key:key,
+                    language:'pt-BR'
+                }
+            }).catch((err)=>{
+                console.log(err);
+            });
+
+            if (isActive) {
+                const nowList = getListMovies(10,response.data.cast);
+                // console.log(nowList);
+                setCast(nowList);
+            }
+           
         }
         if (isActive) {
             getMovie();
+            getCast();
         }
 
         return ()=>{
@@ -122,7 +145,19 @@ export const Details = () => {
             <OverviewScroll showsVerticalScrollIndicator={false}>
                     <TitleMovie>Descrição</TitleMovie>
                     <Description>{movie.overview}</Description>
+
+                    {/* <ListCast  
+                        data={cast}
+                        horizontal={true}
+                        showsHorizontalScrollIndicator={false}
+                        keyExtractor={(item)=>String(item.id)}
+                        renderItem={({item})=>(
+                            <Cast data={item}/>
+                        )}
+                    /> */}
             </OverviewScroll>
+
+           
 
         </Container>
     );
