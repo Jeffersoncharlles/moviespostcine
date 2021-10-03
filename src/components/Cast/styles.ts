@@ -7,6 +7,7 @@ flex: 1;
 export const ImageContainer = styled.TouchableOpacity`
     justify-content: center;
     align-items: center;
+    margin-bottom: 3px;
 `;
 export const BannerItemImg = styled.Image`
     width: ${RFValue(48)}px;
@@ -17,5 +18,6 @@ export const BannerItemImg = styled.Image`
 export const Title = styled.Text`
     font-size: ${RFValue(12)}px;
     color: ${ ({theme}) => theme.colors.shape};
+    padding: 5px;
     
 `;

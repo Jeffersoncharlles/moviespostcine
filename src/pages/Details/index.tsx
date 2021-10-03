@@ -84,7 +84,7 @@ export const Details = () => {
             });
 
             if (isActive) {
-                const nowList = getListMovies(10,response.data.cast);
+                const nowList = getListMovies(5,response.data.cast);
                 // console.log(nowList);
                 setCast(nowList);
             }
@@ -153,7 +153,7 @@ export const Details = () => {
                     <TitleMovie>Descrição</TitleMovie>
                     <Description>{movie.overview}</Description>
 
-                    {/* <TitleMovie>Cast</TitleMovie>
+                    <TitleMovie>Cast</TitleMovie>
                     <ListCast  
                         data={cast}
                         horizontal={true}
@@ -162,7 +162,7 @@ export const Details = () => {
                         renderItem={({item})=>(
                             <Cast data={item}/>
                         )}
-                    /> */}
+                    />
             </OverviewScroll>
 
             <ModalView animationType="slide" transparent={true} visible={openLink}>

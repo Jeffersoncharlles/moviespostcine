@@ -1,4 +1,5 @@
 import React from 'react';
+import { posterPath } from '../../services/api';
 
 import {
     Container,
@@ -7,18 +8,24 @@ import {
     ImageContainer,
 } from './styles';
 
+interface ICast{
+    profile_path:string;
+    name:string;
+}
+
 export const Cast = ({data}) => {
+    // console.log(data);
 
     return(
         <Container>
             <ImageContainer activeOpacity={0.8}  >
                 <BannerItemImg
                     // resizeMode="contain" 
-                    source={{uri:'https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2076&q=80'}}
+                    source={{uri: posterPath+data.profile_path}}
 
                 />
             </ImageContainer>
-            <Title numberOfLines={1}>AtoresAtoresAtoresAtoresAtores</Title>
+            <Title numberOfLines={1}>{data.name}</Title>
         </Container>
     );
 }
