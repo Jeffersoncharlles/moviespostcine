@@ -49,9 +49,18 @@ export const Home = () => {
     const theme = useTheme();
 
     const handleSearchMovie = ()=>{
-        navigation.navigate('Search')
+
+        if (searchInput === '') return;
+        
+        navigation.navigate('Search',{
+            name: searchInput
+        });
+        setSearchInput('');
     }
     
+    const navigateDetailsPage =(movie)=>{
+        navigation.navigate('Details',{id: movie.id});
+    }
 
 
     useEffect( ()=>{
@@ -111,9 +120,7 @@ export const Home = () => {
         
     },[]);
 
-    const navigateDetailsPage =(movie)=>{
-        navigation.navigate('Details',{id:movie.id});
-    }
+    
 
     if (loading) {
         return(

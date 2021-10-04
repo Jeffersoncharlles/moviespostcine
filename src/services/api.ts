@@ -7,9 +7,10 @@ import axios from 'axios';
 
 const key = '660709e57868ca59f65c23440f729164';
 const posterPath = 'https://image.tmdb.org/t/p/original';
+const posterPath2 = 'https://image.tmdb.org/t/p/w500';
 
 const api = axios.create({
     baseURL:'https://api.themoviedb.org/3'
 });
 
-export {api, key,posterPath}
+export {api, key,posterPath,posterPath2}

@@ -38,8 +38,11 @@ export const AppStackRoutes = () => {
                 options={{
                     title:"Sua Busca",
                     headerTintColor:theme.colors.shape,
+                    headerTitleStyle:{
+                        color: theme.colors.text
+                    },
                     headerStyle:{
-                        
+                        backgroundColor:theme.colors.background
                     }
                 }}
             />
