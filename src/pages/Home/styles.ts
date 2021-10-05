@@ -7,6 +7,13 @@ export const Container = styled.View`
     background-color: ${({theme})=> theme.colors.background};
    
 `;
+export const ContainerActive = styled.View`
+    flex: 1;
+    background-color: ${({theme})=> theme.colors.background};
+    justify-content: center;
+    align-items: center;
+   
+`;
 export const Header = styled.View`
    
     background-color: ${({theme})=> theme.colors.shape};

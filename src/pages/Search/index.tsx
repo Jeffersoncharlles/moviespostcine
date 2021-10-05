@@ -8,7 +8,8 @@ import { api, key } from '../../services/api';
 
 import {
     Container,
-    FlatListMovies
+    FlatListMovies,
+    ContainerActive
 } from './styles';
 import { SearchItem } from '../../components/SearchItem';
 
@@ -70,9 +71,9 @@ export const Search = () => {
 
     if (loading) {
         return(
-            <Container>
+            <ContainerActive>
                 <ActivityIndicator  size='large' color={theme.colors.success}/>
-            </Container>
+            </ContainerActive>
         )
     }
 

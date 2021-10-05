@@ -12,6 +12,7 @@ import {
     BannerButton,
     Banner,
     SliderMovie,
+    ContainerActive,
 } from './styles';
 
 import { Header } from '../../components/Header';
@@ -124,9 +125,9 @@ export const Home = () => {
 
     if (loading) {
         return(
-            <Container>
+            <ContainerActive>
                 <ActivityIndicator  size='large' color={theme.colors.success}/>
-            </Container>
+            </ContainerActive>
         )
     }
 
@@ -149,8 +150,8 @@ export const Home = () => {
 
                 <BannerButton activeOpacity={0.8} onPress={()=> navigateDetailsPage(bannerMovie)}>
                     <Banner 
-                        //resizeMethod='resize'
-                        resizeMode="center"
+                        resizeMethod='resize'
+                        // resizeMode="center"
                         source={{uri:posterPath+bannerMovie.backdrop_path}} 
                         
                         />
