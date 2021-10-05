@@ -1,7 +1,8 @@
+import { useNavigation,useIsFocused } from '@react-navigation/native';
 import React,{useEffect,useState} from 'react';
 import { FavoriteItem } from '../../components/FavoriteItem';
 import { Header } from '../../components/Header';
-import { getMoviesSave } from '../../utils/storage';
+import { deleteMovie, getMoviesSave } from '../../utils/storage';
 
 import {
     Container,
@@ -10,6 +11,8 @@ import {
 
 export const Movies = () => {
     const [myMovies,setMyMovies] = useState([]);
+    const navigation = useNavigation();
+    const isFocused = useIsFocused();
 
     const name = 'Meus Filmes'
     const iconNames = 'menu'
@@ -35,7 +38,15 @@ export const Movies = () => {
             isActive = false;
         }
 
-    },[]);
+    },[isFocused]);
+
+    const handleDelete = async (id:any)=>{
+        const result = await deleteMovie(id);
+        setMyMovies(result);
+    }
+    const navigationHandleDetails = (item:any)=>{
+        navigation.navigate('Details',{id: item.id});
+    }
 
     return(
         <Container>
@@ -46,7 +57,11 @@ export const Movies = () => {
                 keyExtractor={(item)=> String(item.id)}
                 showsVerticalScrollIndicator={false}
                 renderItem={({item})=>(
-                    <FavoriteItem  data={item}/>
+                    <FavoriteItem  
+                        data={item}
+                        deleteMovie={handleDelete}
+                        navigatePage={()=>navigationHandleDetails(item)}
+                        />
                 )}
             
             

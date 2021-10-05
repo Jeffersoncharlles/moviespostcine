@@ -13,7 +13,7 @@ import {
     DeleteIcon,
 } from './styles';
 
-export const FavoriteItem = ({data}:any) => {
+export const FavoriteItem = ({data,deleteMovie,navigatePage}:any) => {
 
     return(
         <Container>
@@ -23,10 +23,10 @@ export const FavoriteItem = ({data}:any) => {
                 <Rate>{data.vote_average}/10</Rate>
             </RaterContainer>
             <ActionContainer>
-                <DetailButton>
+                <DetailButton onPress={()=>navigatePage(data)}>
                     <TitleDetalhes>Ver Detalhes</TitleDetalhes>
                 </DetailButton>
-                <DeleteButton>
+                <DeleteButton onPress={()=>deleteMovie(data.id)}>
                     <DeleteIcon name="trash"/>
                 </DeleteButton>
             </ActionContainer>
