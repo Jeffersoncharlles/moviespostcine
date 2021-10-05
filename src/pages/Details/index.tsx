@@ -31,7 +31,7 @@ import {
     ListCast,
     ModalView
 } from './styles';
-import { salveMove } from '../../utils/storage';
+import { hasMovieFilter, salveMove ,deleteMovie} from '../../utils/storage';
 
 
 
@@ -55,9 +55,17 @@ export const Details = () => {
     const [movie, setMovie] = useState<IMovie>({} as IMovie);
     const [cast, setCast] = useState({});
     const [openLink, setOpenLink] = useState(false);
+    const [favoritesMovies, setFavoritesMovies] = useState(false);
 
-    const favoriteMovie = async (movie:any)=>{
-        await salveMove('@moviescine',movie);
+    const handleFavoriteMovie = async (movie:any)=>{
+        if (favoritesMovies) {
+            await deleteMovie(movie.id);
+            setFavoritesMovies(false);
+        }else{
+            await salveMove('@moviescine',movie);
+            setFavoritesMovies(true);
+        }
+        
     }
 
     useEffect(()=>{
@@ -74,6 +82,10 @@ export const Details = () => {
 
             if (isActive) {
                 setMovie(response.data);
+
+                const isFavorite = await hasMovieFilter(response.data);
+                    setFavoritesMovies(isFavorite);
+                
                 //console.log(response.data);
             }
            
@@ -114,10 +126,17 @@ export const Details = () => {
                         name='arrow-left'
                     />
                 </HeaderButton>
-                <HeaderButton onPress={()=>favoriteMovie(movie)}>
-                    <FavoritesHeader 
-                        name='bookmark-outline'
-                    />
+                <HeaderButton onPress={()=>handleFavoriteMovie(movie)}>
+                    {favoritesMovies ? (
+                        <FavoritesHeader 
+                            name='bookmark'
+                        />
+                    ):(
+                        <FavoritesHeader 
+                            name='bookmark-outline'
+                        />
+                    )
+                    }
                 </HeaderButton>
             </Header>
             
