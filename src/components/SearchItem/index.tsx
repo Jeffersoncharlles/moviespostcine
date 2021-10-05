@@ -31,7 +31,8 @@ export const SearchItem = ({data , navigatePage}:any) => {
         <Container activeOpacity={0.7} onPress={detailsMovie}>
             { data?.item.poster_path ? 
                 <BannerImag 
-                    resizeMethod="resize"
+                    // resizeMethod="resize"
+                    resizeMode="cover"
                     source={{uri:`https://image.tmdb.org/t/p/original/${data?.item.poster_path}`}}
                 />
              : 

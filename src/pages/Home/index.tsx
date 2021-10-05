@@ -149,9 +149,9 @@ export const Home = () => {
 
                 <BannerButton activeOpacity={0.8} onPress={()=> navigateDetailsPage(bannerMovie)}>
                     <Banner 
-                        resizeMethod='resize'
-                        // resizeMode="cover"
-                        source={{uri:posterPath+bannerMovie.poster_path}} 
+                        //resizeMethod='resize'
+                        resizeMode="center"
+                        source={{uri:posterPath+bannerMovie.backdrop_path}} 
                         
                         />
                 </BannerButton>

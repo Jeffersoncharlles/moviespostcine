@@ -31,6 +31,7 @@ import {
     ListCast,
     ModalView
 } from './styles';
+import { salveMove } from '../../utils/storage';
 
 
 
@@ -54,6 +55,10 @@ export const Details = () => {
     const [movie, setMovie] = useState<IMovie>({} as IMovie);
     const [cast, setCast] = useState({});
     const [openLink, setOpenLink] = useState(false);
+
+    const favoriteMovie = async (movie:any)=>{
+        await salveMove('@moviescine',movie);
+    }
 
     useEffect(()=>{
         let isActive  = true;
@@ -109,9 +114,9 @@ export const Details = () => {
                         name='arrow-left'
                     />
                 </HeaderButton>
-                <HeaderButton>
+                <HeaderButton onPress={()=>favoriteMovie(movie)}>
                     <FavoritesHeader 
-                        name='bookmark'
+                        name='bookmark-outline'
                     />
                 </HeaderButton>
             </Header>
