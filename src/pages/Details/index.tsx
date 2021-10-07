@@ -85,8 +85,6 @@ export const Details = () => {
 
                 const isFavorite = await hasMovieFilter(response.data);
                     setFavoritesMovies(isFavorite);
-                
-                //console.log(response.data);
             }
            
         }
@@ -145,7 +143,7 @@ export const Details = () => {
                 source={{uri:posterPath+movie.poster_path}} 
             />
 
-            <ButtonLink onPress={()=>setOpenLink(true)}>
+            <ButtonLink onPress={()=>setOpenLink(false)}>
                 <IconLink name='link'/>
             </ButtonLink>
 
@@ -194,7 +192,6 @@ export const Details = () => {
                         link={movie?.homepage}
                         title={movie?.title}
                         closeModal={()=>setOpenLink(false)}
-                    
                     />
             </ModalView>
 
