@@ -2,7 +2,7 @@
 
 # About MoviesPosterCine
 
-![](https://github.com/Jeffersoncharlles/StarbucksWebHtml/raw/master/screenshot/screenshot1.PNG)
+![](https://github.com/Jeffersoncharlles/moviespostcine/blob/main/screenshots/Group%201.png)
 
 ### Premium Partners
 
