@@ -3,6 +3,7 @@
 # About MoviesPosterCine
 
 ![](https://github.com/Jeffersoncharlles/moviespostcine/blob/main/screenshots/Group%201.png)
+![](https://github.com/Jeffersoncharlles/moviespostcine/blob/main/screenshots/Group%202.png)
 
 ### Premium Partners
 
