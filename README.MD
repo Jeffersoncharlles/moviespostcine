@@ -2,8 +2,12 @@
 
 # About MoviesPosterCine
 
+<h1 align="center">
+  <img alt="moviespostcine" title="#moviespostcine" src="https://github.com/Jeffersoncharlles/moviespostcine/blob/main/screenshots/Anima%C3%A7%C3%A3o.gif" />
+</h1>
+
 ![](https://github.com/Jeffersoncharlles/moviespostcine/blob/main/screenshots/Group%201.png)
-![](https://github.com/Jeffersoncharlles/moviespostcine/blob/main/screenshots/Anima%C3%A7%C3%A3o.gif)
+
 
 ### Premium Partners
 
