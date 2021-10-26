@@ -6,7 +6,8 @@
   <img alt="moviespostcine" title="#moviespostcine" src="" />
 </h4> -->
 
-![screenshots](https://github.com/Jeffersoncharlles/moviespostcine/blob/main/screenshots/Anima%C3%A7%C3%A3o.gif =250x)
+<!-- ![screenshots] -->
+[<img src="https://github.com/Jeffersoncharlles/moviespostcine/blob/main/screenshots/Anima%C3%A7%C3%A3o.gif" width="250"/>](https://github.com/Jeffersoncharlles/moviespostcine/blob/main/screenshots/Anima%C3%A7%C3%A3o.gif)
 
 <!-- ![](https://github.com/Jeffersoncharlles/moviespostcine/blob/main/screenshots/Group%201.png)
  -->
